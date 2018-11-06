@@ -5,7 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,8 +43,53 @@ public class MainActivity extends AppCompatActivity {
 //        RealTime Service
         realTimeService();
 
+//        Stop Alert
+        stopAlert();
 
     }   // Main Method
+
+    private void stopAlert() {
+        Button button = findViewById(R.id.btnStopAlert);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (statusABoolean) {
+                    Toast.makeText(MainActivity.this, "Click When Alert",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Stop Buzzer Alert",
+                            Toast.LENGTH_SHORT).show();
+                    stopBuzzer();
+
+                }
+
+
+
+            }   // onClick
+        });
+
+
+    }
+
+    private void stopBuzzer() {
+
+        String[] strings = new String[]{"MyTemp", "MyHumid"};
+        String[] strings1 = new String[]{"alertTemp", "alertHumid"};
+
+        for (int i = 0; i < strings.length; i++) {
+
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference().child(strings[i]);
+
+            Map<String, Object> objectMap = new HashMap<>();
+            objectMap.put(strings1[i], 0);
+            databaseReference.updateChildren(objectMap);
+
+        }   // for
+
+
+    }
 
     private void realTimeService() {
 
