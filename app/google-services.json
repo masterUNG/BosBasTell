@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "301875721399",
+    "firebase_url": "https://bosanbas.firebaseio.com",
+    "project_id": "bosanbas",
+    "storage_bucket": "bosanbas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301875721399:android:3a02229e51f766a0",
+        "android_client_info": {
+          "package_name": "masterung.androidthai.in.th.bosbastell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301875721399-tiiiepq54nt8td4d8qte37mc9dglm8rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "masterung.androidthai.in.th.bosbastell",
+            "certificate_hash": "99f1de59cbbb9f0ab27aeb63c596235bc843b92a"
+          }
+        },
+        {
+          "client_id": "301875721399-er51990m6d6kq13d8034rnrmkb0gltkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-RuZzPMVC4UPdFm04vcBYxA_9e5KpAcw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301875721399-er51990m6d6kq13d8034rnrmkb0gltkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
