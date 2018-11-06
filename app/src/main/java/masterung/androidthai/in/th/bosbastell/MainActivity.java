@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     int greenInt = 0xFF00FF00;
     int redInt = 0xFFFF0000;
     private boolean statusABoolean = true;
+    private boolean tempABoolean = false, humidABoolean = false;
 
 
     @Override
@@ -114,24 +115,32 @@ public class MainActivity extends AppCompatActivity {
 
                         //                Check Temp
                         if (findInt(currentTempString) > alertTempAnInt) {
+                            tempABoolean = true;
                             setupAlert(true);
                         }
 
                         //                Check Humid
                         if (findInt(currentHumidString) > alertHumidAnInt) {
+                            humidABoolean = true;
                             setupAlert(false);
                         }
 
                     }else {
 
                         //                Check Temp
-                        if (findInt(currentTempString) <= alertTempAnInt) {
+                        if ((findInt(currentTempString) <= alertTempAnInt) && tempABoolean) {
                             tempTextView.setTextColor(greenInt);
+                            statusABoolean = true;
+                            tempABoolean = false;
+                            stopBuzzer();
                         }
 
                         //                Check Humid
-                        if (findInt(currentHumidString) <= alertHumidAnInt) {
+                        if ((findInt(currentHumidString) <= alertHumidAnInt) && humidABoolean) {
                             humidTextView.setTextColor(greenInt);
+                            statusABoolean = true;
+                            humidABoolean = false;
+                            stopBuzzer();
                         }
                     }
 
