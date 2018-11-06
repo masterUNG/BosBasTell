@@ -1,5 +1,6 @@
 package masterung.androidthai.in.th.bosbastell;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private String currentTempString = "20", currentHumidString = "30",
             alertTempString, alertHumidString;
     private int alertTempAnInt = 30, alertHumidAnInt = 60;
+    int greenInt = 0xFF00FF00;
+    int redInt = 0xFFFF0000;
+    private boolean statusABoolean = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         tempTextView = findViewById(R.id.txtTemp);
         humidTextView = findViewById(R.id.txtHumid);
+        tempTextView.setTextColor(greenInt);
+        humidTextView.setTextColor(greenInt);
 
 //        RealTime Service
         realTimeService();
@@ -54,19 +61,38 @@ public class MainActivity extends AppCompatActivity {
                     tempTextView.setText(currentTempString);
                     humidTextView.setText(currentHumidString);
 
-                    //                Check Temp
-                    if (findInt(currentTempString) > alertTempAnInt) {
-                        setupAlert(true);
+
+                    if (statusABoolean) {
+
+                        //                Check Temp
+                        if (findInt(currentTempString) > alertTempAnInt) {
+                            setupAlert(true);
+                        }
+
+                        //                Check Humid
+                        if (findInt(currentHumidString) > alertHumidAnInt) {
+                            setupAlert(false);
+                        }
+
+                    }else {
+
+                        //                Check Temp
+                        if (findInt(currentTempString) <= alertTempAnInt) {
+                            tempTextView.setTextColor(greenInt);
+                        }
+
+                        //                Check Humid
+                        if (findInt(currentHumidString) <= alertHumidAnInt) {
+                            humidTextView.setTextColor(greenInt);
+                        }
                     }
 
-                    //                Check Humid
-                    if (findInt(currentHumidString) > alertHumidAnInt) {
-                        setupAlert(false);
-                    }
 
 
 
-                }
+
+
+                }   // Data change
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -97,10 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupAlert(boolean status) {
 
-        Log.d("6NovV1", "status ==> " + status);
-
-
-
+        statusABoolean = false;
         Map<String, Object> objectMap = new HashMap<>();
 
         if (status) {
@@ -109,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyTemp");
             objectMap.put("alertTemp", 1);
             databaseReference.setValue(objectMap);
+            tempTextView.setTextColor(redInt);
 
         } else {
 //            Alert Humid
@@ -116,7 +140,13 @@ public class MainActivity extends AppCompatActivity {
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyHumid");
             objectMap.put("alertHumid", 1);
             databaseReference.setValue(objectMap);
+            humidTextView.setTextColor(redInt);
         }   // if
+
+
+
+
+
 
 
 
