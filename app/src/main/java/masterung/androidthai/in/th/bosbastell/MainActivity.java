@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         stopAlert();
 
 //        Test Speed
-        SpeedView speedView = findViewById(R.id.speedViewTest);
-        speedView.speedTo(findInt(currentTempString), 4000);
+//        SpeedView speedView = findViewById(R.id.speedViewTest);
+//        speedView.speedTo(findInt(currentTempString), 4000);
 
 
     }   // Main Method
