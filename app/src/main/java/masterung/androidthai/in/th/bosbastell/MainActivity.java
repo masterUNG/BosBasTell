@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private int alertTempAnInt = 30, alertHumidAnInt = 60;
     int greenInt = 0xFF00FF00;
     int redInt = 0xFFFF0000;
+    int yellowInt = 0xFFFFFF00;
     private boolean statusABoolean = true;
     private boolean tempABoolean = false, humidABoolean = false;
 
@@ -61,6 +62,19 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Stop Buzzer Alert",
                             Toast.LENGTH_SHORT).show();
+
+                    if (tempABoolean) {
+                        tempTextView.setTextColor(yellowInt);
+                    }
+
+                    if (humidABoolean) {
+                        humidTextView.setTextColor(yellowInt);
+                    }
+
+
+
+
+
                     stopBuzzer();
 
                 }
